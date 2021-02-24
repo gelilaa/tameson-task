@@ -21,11 +21,11 @@ The category results would include the parent hierarchy so the structure would b
 
 ## original state
 
-![original](img\original.png)
+![original](https://raw.githubusercontent.com/gelilaa/tameson-task/master/img/original.png)
 
 ## Desired result:
 
-![desired](img\now.png)
+![desired](https://raw.githubusercontent.com/gelilaa/tameson-task/master/img/now.png)
 
 # Set-up
 
