@@ -36,5 +36,5 @@ To start up and run the repo on your local machine on top of following the Vue s
 ## Test1
 
 on this branch the search menus were re-arrenged to fit the
-desired. please see [issue]()
+desired. please see [issue](https://github.com/gelilaa/tameson-task/issues/2)
 ![test1](img/test.jpg)
