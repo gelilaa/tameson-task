@@ -29,7 +29,7 @@
     ],
     "invalidateCacheKey": "aeSu7aip",
     "invalidateCacheForwarding": false,
-    "invalidateCacheForwardUrl": "http://localhost:8080/invalidate?key=aeSu7aip&tag=",
+    "invalidateCacheForwardUrl": "http://demo.vuestorefront.io/invalidate?key=aeSu7aip&tag=",
     "dynamicConfigReload": true,
     "dynamicConfigContinueOnError": false,
     "dynamicConfigExclude": [
@@ -108,7 +108,7 @@
     "port": 8080
   },
   "api": {
-    "url": "http://localhost:8080",
+    "url": "http://demo.vuestorefront.io",
     "saveBandwidthOverCache": true
   },
   "elasticsearch": {
@@ -720,7 +720,7 @@
     "endpoint": "/api/user",
     "history_endpoint": "/api/user/order-history?token={{token}}&pageSize={{pageSize}}&currentPage={{currentPage}}",
     "resetPassword_endpoint": "/api/user/reset-password",
-    "createPassword_endpoint": "http://localhost:8080/api/user/create-password",
+    "createPassword_endpoint": "http://demo.vuestorefront.io/api/user/create-password",
     "changePassword_endpoint": "/api/user/change-password?token={{token}}",
     "login_endpoint": "/api/user/login",
     "create_endpoint": "/api/user/create",
