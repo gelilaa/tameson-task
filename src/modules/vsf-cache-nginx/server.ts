@@ -9,7 +9,7 @@ let urlsToClear = []
 const requestAndWait = (promise: Promise<any>, time: number): Promise<any> => {
   return new Promise((resolve, reject) => {
     promise.then(() => {
-      console.log(`Waiting ${time/1000} second${time > 1999 ? 's' : ''}`)
+      console.log(`Waiting ${time / 1000} second${time > 1999 ? 's' : ''}`)
       setTimeout(resolve, time)
     }).catch(reject)
   })
@@ -31,19 +31,19 @@ serverHooks.beforeOutputRenderedResponse(({ output, req, context }) => {
     const tagUrlMap = `nginx:${site}:${tag}`
     promises.push(
       cache.get(tagUrlMap)
-      .then(output => {
-        const reqUrl = `${config.get('nginx.protocol')}://${config.get('nginx.host')}:${config.get('nginx.port')}${req.url}`
-        
-        cache.set(
-          tagUrlMap,
-          output === null ? [reqUrl] : Array.from(new Set([...output, reqUrl])),
-          tagsArray
-        ).catch(err => {
-          console.log(`Could not save '${tag}' tag's URL`, err)
+        .then(output => {
+          const reqUrl = `${config.get('nginx.protocol')}://${config.get('nginx.host')}:${config.get('nginx.port')}${req.url}`
+
+          cache.set(
+            tagUrlMap,
+            output === null ? [reqUrl] : Array.from(new Set([...output, reqUrl])),
+            tagsArray
+          ).catch(err => {
+            console.log(`Could not save '${tag}' tag's URL`, err)
+          })
+        }).catch(err => {
+          console.log(`Could not read '${tag}' tag's URL`, err)
         })
-      }).catch(err => {
-        console.log(`Could not read '${tag}' tag's URL`, err)
-      })
     )
   }
 
@@ -70,11 +70,9 @@ serverHooks.beforeCacheInvalidated(({ tags, req }) => {
     if (config.server.availableCacheTags.indexOf(tag) >= 0 || config.server.availableCacheTags.find(t => {
       return tag.indexOf(t) === 0
     })) {
-
       const tagUrlMap = `nginx:${site}:${tag}`
       cache.get(tagUrlMap)
         .then(output => {
-          
           if (output === null) {
             return
           }
@@ -90,11 +88,9 @@ serverHooks.beforeCacheInvalidated(({ tags, req }) => {
               }), config.get('nginx.bypassTimeOffset'))
             )
           }
-
         }).catch(err => {
           console.log(`Could not read '${tag}' tag's URL`, err)
         })
-
     } else {
       console.error(`Invalid tag name ${tag}`)
     }
@@ -104,7 +100,7 @@ serverHooks.beforeCacheInvalidated(({ tags, req }) => {
 // There I will send earlier prepared promises from `urlsToClear` array
 // Why now?
 // Redis' just invalidated data. So only here I can access fresh one
-// I am sending request to nginx with `proxy_cache_bypass` equal 1 
+// I am sending request to nginx with `proxy_cache_bypass` equal 1
 // So it will skip cache and reach Redis with fresh data
 
 serverHooks.afterCacheInvalidated(() => {
