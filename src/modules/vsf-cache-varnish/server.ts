@@ -17,18 +17,18 @@ serverHooks.beforeCacheInvalidated(({ tags, req }) => {
           method: 'BAN',
           headers: {
             'X-VS-Cache-Tag': tag
-          } 
-        }).then(response => response.text())
-        .then(text => {
-          if (text && text.includes('200 Ban added')) {
-            console.log(
-              `Tags invalidated successfully for [${tag}] in the Varnish`
-            );
-          } else {
-            console.log(text)
-            console.error(`Couldn't ban tag: ${tag} in the Varnish`);
           }
-        })
+        }).then(response => response.text())
+          .then(text => {
+            if (text && text.includes('200 Ban added')) {
+              console.log(
+                `Tags invalidated successfully for [${tag}] in the Varnish`
+              );
+            } else {
+              console.log(text)
+              console.error(`Couldn't ban tag: ${tag} in the Varnish`);
+            }
+          })
       )
     } else {
       console.error(`Invalid tag name ${tag}`)
