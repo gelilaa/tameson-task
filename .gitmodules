@@ -4,5 +4,5 @@
 	branch = master
 [submodule "src/themes/capybara"]
 	path = src/themes/capybara
-	url = https://github.com/gelilaa/tameson-task.git
+	url = https://github.com/DivanteLtd/vsf-capybara.git
 	branch = master
